@@ -34,21 +34,15 @@ public class ProductMgmtApp {
 
         // XML format
         System.out.println("\n---- XML Format ----");
+        System.out.println("<?xml version = \"1.0\" ?>");
         System.out.println("<products>");
         for (Product p : products) {
-            System.out.println("  <product>");
-            System.out.println("    <productId>" + p.getProductId() + "</productId>");
-            System.out.println("    <name>" + p.getName() + "</name>");
-            System.out.println("    <dateSupplied>" + p.getDateSupplied() + "</dateSupplied>");
-            System.out.println("    <quantityInStock>" + p.getQuantityInStock() + "</quantityInStock>");
-            System.out.println("    <unitPrice>" + p.getUnitPrice() + "</unitPrice>");
-            System.out.println("  </product>");
+            System.out.println("    <product productId = \"" + p.getProductId() + "\" name = \"" + p.getName() + "\" dateSuppplied = \"" + p.getDateSupplied() + "\" quantityInStock = \"" + p.getQuantityInStock() + "\" unitPrice = \"" + p.getUnitPrice() + "\" />");
         }
         System.out.println("</products>");
 
         // CSV format
         System.out.println("\n---- CSV Format ----");
-        System.out.println("productId,name,expiryDate,quantity,unitPrice");
         for (Product p : products) {
             System.out.println(p.getProductId() + "," + p.getName() + "," + p.getDateSupplied() + "," +
                     p.getQuantityInStock() + "," + p.getUnitPrice());

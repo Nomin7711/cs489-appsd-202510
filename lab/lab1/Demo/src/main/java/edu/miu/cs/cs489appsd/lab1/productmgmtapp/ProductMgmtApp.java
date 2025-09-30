@@ -31,7 +31,6 @@ public class ProductMgmtApp {
                     (i < products.size() - 1 ? "," : ""));
         }
         System.out.println("]");
-
         // XML format
         System.out.println("\n---- XML Format ----");
         System.out.println("<?xml version = \"1.0\" ?>");

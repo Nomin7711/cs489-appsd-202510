@@ -1,6 +1,5 @@
-name: Employee-PensionPlan CI/CD
+name: Lab2 Projects CI/CD
 
-# Trigger on push or pull request
 on:
   push:
     branches:
@@ -10,27 +9,19 @@ on:
       - main
 
 jobs:
-  build:
-    name: Build, Test & Upload JAR
+  build-employee-pensionplan:
+    name: Build & Test Employee-PensionPlan
     runs-on: ubuntu-latest
-
     steps:
-      # 1️⃣ Checkout repository
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2️⃣ Set up Java 17
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
 
-      # 3️⃣ Verify Java version (optional)
-      - name: Verify Java version
-        run: java -version
-
-      # 4️⃣ Cache Maven dependencies
       - name: Cache Maven dependencies
         uses: actions/cache@v3
         with:
@@ -39,17 +30,47 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      # 5️⃣ Build project
       - name: Build with Maven
         run: mvn -B package --file lab/lab2/EmployeePensionPlan/pom.xml
 
-      # 6️⃣ Run tests
       - name: Run tests
         run: mvn -B test --file lab/lab2/EmployeePensionPlan/pom.xml
 
-      # 7️⃣ Upload built JAR as artifact
-      - name: Upload JAR artifact
+      - name: Upload EmployeePensionPlan JAR
         uses: actions/upload-artifact@v4
         with:
           name: EmployeePensionPlan-JAR
           path: lab/lab2/EmployeePensionPlan/target/*.jar
+
+  build-pams:
+    name: Build & Test PAMS
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Build with Maven
+        run: mvn -B package --file lab/lab2/PAMS/pom.xml
+
+      - name: Run tests
+        run: mvn -B test --file lab/lab2/PAMS/pom.xml
+
+      - name: Upload PAMS JAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: PAMS-JAR
+          path: lab/lab2/PAMS/target/*.jar

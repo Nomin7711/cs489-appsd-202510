@@ -1,0 +1,8 @@
+# IntelliJ IDEA / JetBrains
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Copilot
+copilot*.xml

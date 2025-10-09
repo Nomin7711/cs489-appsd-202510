@@ -27,7 +27,4 @@ public class Dentist {
         this.specialty = specialty;
         this.appointments = appointments;
     }
-    public List<Appointment> getAppointments() {
-        return appointments;
-    }
 }

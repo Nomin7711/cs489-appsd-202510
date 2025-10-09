@@ -31,7 +31,4 @@ public class Patient {
         this.address = address;
         this.appointments = appointments;
     }
-    public List<Appointment> getAppointments() {
-        return appointments;
-    }
 }

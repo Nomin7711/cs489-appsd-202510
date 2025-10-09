@@ -1,0 +1,52 @@
+@startuml
+class Address {
+  +addressId : Integer
+  +street : String
+  +city : String
+  +state : String
+  +zipCode : String
+}
+
+class Patient {
+  +patientId : Integer
+  +name : String
+  +email : String
+  +phone : String
+  +appointments : List<Appointment>
+  +address : Address
+}
+
+class Dentist {
+  +dentistId : Integer
+  +name : String
+  +specialty : String
+  +appointments : List<Appointment>
+}
+
+class Surgery {
+  +surgeryId : Integer
+  +name : String
+  +date : String
+  +doctor : String
+  +appointments : List<Appointment>
+  +address : Address
+}
+
+class Appointment {
+  +appointmentId : Integer
+  +date : String
+  +time : String
+  +description : String
+  +patient : Patient
+  +dentist : Dentist
+  +surgery : Surgery
+}
+
+' Relationships
+Patient "1" -- "0..*" Appointment : has
+Dentist "1" -- "0..*" Appointment : performs
+Surgery "1" -- "0..*" Appointment : hosts
+
+Patient "1" -- "1" Address : lives_at
+Surgery "1" -- "1" Address : located_at
+@enduml

@@ -1,0 +1,58 @@
+@startuml
+entity Patient {
+  +patientId : Integer
+  name : String
+  email : String
+  phone : String
+  address_id : String
+}
+
+entity Dentist {
+  +dentistId : Integer
+  name : String
+  specialty : String
+}
+
+entity Surgery {
+  +surgeryId : Integer
+  surgery_name : String
+  surgery_type : String
+  date : String
+  address_id : String
+}
+
+entity Appointment {
+  +appointmentId : Integer
+  date : String
+  time : String
+  description : String
+  dentist_id : Integer
+    patient_id : Integer
+    surgery_id : Integer
+}
+
+entity Address {
+  +addressId : Integer
+  street : String
+  city : String
+  state : String
+  zipCode : String
+}
+entity User {
+  +userId : Integer
+  username : String
+  password : String
+  role : String
+}
+entity Role {
+  +roleId : Integer
+  roleName : String
+}
+
+Patient ||--o{ Appointment : has
+Dentist ||--o{ Appointment : performs
+Surgery ||--o{ Appointment : hosts
+
+Patient ||--|| Address : lives_at
+Surgery ||--|| Address : located_at
+@enduml

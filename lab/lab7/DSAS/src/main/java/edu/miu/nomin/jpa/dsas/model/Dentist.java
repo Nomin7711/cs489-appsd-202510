@@ -1,5 +1,6 @@
 package edu.miu.nomin.jpa.dsas.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,12 +20,7 @@ public class Dentist {
     private Integer dentistId;
     private String name;
     private String specialty;
-    @Getter
+    @JsonManagedReference
     @OneToMany(mappedBy = "dentist", cascade = CascadeType.ALL)
     private List<Appointment> appointments;
-    public Dentist(String name, String specialty, List<Appointment> appointments) {
-        this.name = name;
-        this.specialty = specialty;
-        this.appointments = appointments;
-    }
 }

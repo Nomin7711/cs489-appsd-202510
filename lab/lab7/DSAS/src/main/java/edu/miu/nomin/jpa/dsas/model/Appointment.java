@@ -1,5 +1,6 @@
 package edu.miu.nomin.jpa.dsas.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,21 +18,16 @@ public class Appointment {
     private String date;
     private String time;
     private String description;
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "surgery_id")
     private Surgery surgery;
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "patient_id")
     private Patient patient;
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "dentist_id")
     private Dentist dentist;
-    public Appointment(String date, String time, String description, Surgery surgery, Patient patient, Dentist dentist) {
-        this.date = date;
-        this.time = time;
-        this.description = description;
-        this.surgery = surgery;
-        this.patient = patient;
-        this.dentist = dentist;
-    }
 }

@@ -31,4 +31,5 @@ public class Patient {
         this.address = address;
         this.appointments = appointments;
     }
+    public Patient(){}
 }

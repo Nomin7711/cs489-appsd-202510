@@ -1,5 +1,6 @@
 package edu.miu.nomin.jpa.dsas.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,14 +23,8 @@ public class Surgery {
     @OneToOne
     @JoinColumn(name = "address_id", nullable = true)
     private Address address;
+    @JsonManagedReference
     @OneToMany(mappedBy = "surgery", cascade = CascadeType.ALL)
     private List<Appointment> appointments;
 
-    public Surgery(String surgeryType, String date, String surgeonName, Address address, List<Appointment> appointments) {
-        this.surgeryType = surgeryType;
-        this.date = date;
-        this.surgeonName = surgeonName;
-        this.address = address;
-        this.appointments = appointments;
-    }
 }

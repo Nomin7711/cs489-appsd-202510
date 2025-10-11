@@ -1,5 +1,6 @@
 package edu.miu.nomin.jpa.dsas.service.impl;
 
+import edu.miu.nomin.jpa.dsas.dto.PatientDTO;
 import edu.miu.nomin.jpa.dsas.model.Patient;
 import edu.miu.nomin.jpa.dsas.repository.PatientRepository;
 import edu.miu.nomin.jpa.dsas.service.PatientService;
@@ -16,6 +17,11 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public List<Patient> getAllPatients() {
         return patientRepository.findAll();
+    }
+
+    @Override
+    public List<Patient> findAllPatientsSortedByName() {
+        return patientRepository.findAllPatientsSortedByName();
     }
 
     @Override
@@ -36,5 +42,10 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public void deletePatient(int id) {
         patientRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Patient> searchPatients(String searchString) {
+        return patientRepository.searchPatients(searchString);
     }
 }

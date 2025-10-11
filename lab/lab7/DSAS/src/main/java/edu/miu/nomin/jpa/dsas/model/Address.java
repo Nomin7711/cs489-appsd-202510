@@ -20,11 +20,14 @@ public class Address {
     @Column(length = 16)
     private String zipCode;
 
-    public Address( String street, String city, String state, String zipCode) {
-        this.street = street;
-        this.city = city;
-        this.state = state;
-        this.zipCode = zipCode;
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Address{");
+        sb.append("addressId=").append(addressId);
+        sb.append(", street='").append(street).append('\'');
+        sb.append(", city='").append(city).append('\'');
+        sb.append(", state='").append(state).append('\'');
+        sb.append(", zipCode='").append(zipCode).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
-    public Address(){}
 }

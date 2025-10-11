@@ -6,3 +6,5 @@
 
 # Copilot
 copilot*.xml
+# macOS
+.DS_Store
